@@ -11,4 +11,4 @@ spec:
     - protocol: TCP
       name: poi-http
       port: 80 # port you hit
-      targetPort: 8080 # port inside container
+      targetPort: 80 # port inside container
