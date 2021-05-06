@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: poi-deployment
+  labels:
+    app: poi-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-app
+        image: "registryytl0109.azurecr.io/tripinsights/poi:1.0"
+        ports:
+        - containerPort: 80
+        env:
+        - name: SQL_USER
+          value: "sqladminyTl0109"
+        - name: SQL_PASSWORD
+          value: "zY0sj6Cq3"
+        - name: SQL_SERVER
+          value: "sqlserverytl0109.database.windows.net"
+        - name: SQL_DBNAME
+          value: "mydrivingDB"
+        # envFrom:
+        #   - secretRef:
+        #     name: {{name of your secret in kubernetes}}
+        # not required, but recommended best practice
+        livenessProbe:
+          httpGet:
+            path: "/api/poi/healthcheck" # hint: there is a healthcheck endpoint - read the README!
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: "/api/poi/healthcheck"
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        # resource limits are also best practice - I'll let you figure that out on your own

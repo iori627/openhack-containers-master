@@ -61,18 +61,18 @@ jobs:
             --network $(PROJECT_NAME) \
             -p 8080:80 \
             --name poi \
-            -e "SQL_PASSWORD=localtestpw123@" \
-            -e "SQL_SERVER=sqltestdb" \
+            -e "SQL_PASSWORD=Micron123" \
+            -e "SQL_SERVER=sql1" \
             -e "SQL_USER=sa" \
-            -e "ASPNETCORE_ENVIRONMENT=Development" \
+            -e "ASPNETCORE_ENVIRONMENT=Local" \
             tripinsights/poi:1.0
 
           docker run -d \
             --network $(PROJECT_NAME) \
             -p 8081:80 \
             --name trips \
-            -e "SQL_PASSWORD=localtestpw123@" \
-            -e "SQL_SERVER=sqltestdb" \
+            -e "SQL_PASSWORD=Micron123" \
+            -e "SQL_SERVER=sql1" \
             -e "SQL_USER=sa" \
             -e "DOCS_URI=http://temp" \
             tripinsights/trips:1.0
@@ -81,8 +81,8 @@ jobs:
             --network $(PROJECT_NAME) \
             -p 8082:80 \
             --name user-java \
-            -e "SQL_PASSWORD=localtestpw123@" \
-            -e "SQL_SERVER=sqltestdb" \
+            -e "SQL_PASSWORD=Micron123" \
+            -e "SQL_SERVER=sql1" \
             -e "SQL_USER=sa" \
             tripinsights/user-java:1.0 
 
@@ -90,8 +90,8 @@ jobs:
             --network $(PROJECT_NAME) \
             -p 8083:80 \
             --name userprofile \
-            -e "SQL_PASSWORD=localtestpw123@" \
-            -e "SQL_SERVER=sqltestdb" \
+            -e "SQL_PASSWORD=Micron123" \
+            -e "SQL_SERVER=sql1" \
             -e "SQL_USER=sa" \
             tripinsights/userprofile:1.0
 
